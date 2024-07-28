@@ -1,8 +1,96 @@
-.add-container{
-    width: 50%;
-    height: 40%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+.add-container {
+  width: 50%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.transaction-type-container {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.select-container {
+  width: 69%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  border: 1px solid #dedada;
+  margin-bottom: 15px;
+  font-size: 20px;
+  font-family: sans-serif;
+  color: #595858;
+  font-weight: 600;
+}
+
+.text-container {
+  margin-left: 10px;
+  border: 1px solid #dedada;
+}
+
+.lable {
+  width: 150px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 15px;
+  font-family: sans-serif;
+  color: #595858;
+  font-weight: 600;
+}
+
+.save-btn {
+  background-color: #4649fb;
+  color: #f4f4f4;
+  font-size: 18px;
+  font-family: sans-serif;
+  width: 100px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: none;
+}
+
+.button-container {
+  width: 80%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.close-btn {
+  color: #2d2c2c;
+  font-size: 14px;
+  font-family: sans-serif;
+  width: 100px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: transparent;
+  margin-left: 10px;
+  border: 1px solid #dedada;
+}
+
+.icon {
+  font-size: 30px;
 }
