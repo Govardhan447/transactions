@@ -1,6 +1,7 @@
 import {Component} from 'react'
 import {IoIosSave} from 'react-icons/io'
 import {IoClose} from 'react-icons/io5'
+import {v4 as uuidv4} from 'uuid'
 
 import './index.css'
 
@@ -23,19 +24,16 @@ class AddTransaction extends Component {
     this.setState({transactionType: event.target.value})
   }
 
-  onSubmitSuccess = () => {
-    const {history} = this.props
-    history.replace('/')
-  }
-
   onsubmitForm = async event => {
     event.preventDefault()
     const {inputAmount, transactionType, description} = this.state
 
     const newList = {
+      id: uuidv4(),
       date: new Date(),
       description,
       inputAmount,
+      transactionType,
     }
 
     console.log(newList)
@@ -53,9 +51,6 @@ class AddTransaction extends Component {
 
     if (response.ok === true) {
       console.log('response Success')
-      this.onSubmitSuccess(data)
-    } else {
-      this.onSubmitFailure(data)
     }
   }
 

@@ -6,7 +6,20 @@ import './index.css'
 
 const Table = props => {
   const {data} = props
+  const {description, amount, transactionType} = data
+  let credit = 0
+  let debit = 0
+  let totalBalance = 0
+  if (transactionType === 'credit') {
+    credit = amount
+  } else {
+    debit = amount
+  }
+
+  totalBalance = credit - debit
+
   const closeBtn = <IoClose />
+
   return (
     <table className="table-container">
       <thead>
@@ -52,6 +65,17 @@ const Table = props => {
           <th className="column">Balence</th>
         </tr>
       </thead>
+      <tbody>
+        {data.map(item => (
+          <tr key={item.id}>
+            <td className="column">{item.date}</td>
+            <td className="column">{item.description}</td>
+            <td className="column">{credit}</td>
+            <td className="column">{debit}</td>
+            <td className="column">{totalBalance}</td>
+          </tr>
+        ))}
+      </tbody>
     </table>
   )
 }
@@ -59,15 +83,5 @@ const Table = props => {
 export default Table
 
 /*
- <tbody>
-        {data.map(item => (
-          <tr key={item.id}>
-            <td className="column">{item.date}</td>
-            <td className="column">{item.description}</td>
-            <td className="column">{item.credit}</td>
-            <td className="column">{item.debit}</td>
-            <td className="column">{item.balence}</td>
-          </tr>
-        ))}
-      </tbody>
+
 */

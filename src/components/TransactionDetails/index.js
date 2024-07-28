@@ -25,7 +25,9 @@ class TransactionDetails extends Component {
     return (
       <div className="transaction-container">
         <h1 className="heading">Transaction Assignment</h1>
-        <Table data={transactionDetails} />
+        {transactionDetails.map(item => (
+          <Table itemDetails={item} key={item.id} />
+        ))}
       </div>
     )
   }
