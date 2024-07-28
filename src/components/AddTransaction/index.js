@@ -7,8 +7,9 @@ import './index.css'
 class AddTransaction extends Component {
   state = {
     description: '',
-    transactionDetails: [],
     inputAmount: 0,
+    credit:0,
+    debit:0,
     transactionType: 'credit',
   }
 
@@ -24,17 +25,24 @@ class AddTransaction extends Component {
     this.setState({transactionType: event.target.value})
   }
 
+  onSubmitSuccess =() =>{
+    const{history}=this.props
+    history.replace("/")
+  }
+
   onsubmitForm = async () => {
     const {inputAmount, transactionType, description} = this.state
+    const amountType = transactionType==="credit"?
+    this.setState({credit:inputAmount}):this.setState({debit:inputAmount})
 
     const newList = {
       date: new Date(),
       description,
-      transactionType,
-      inputAmount,
+      credit,
+      debit,
     }
 
-    const url = 'https://apis.ccbp.in/login'
+    const url = 'https://todoapplication-m653.onrender.com'
     const options = {
       method: 'POST',
       body: JSON.stringify(newList),
@@ -43,9 +51,9 @@ class AddTransaction extends Component {
     const response = await fetch(url, options)
     const data = await response.json()
     if (response.ok === true) {
-      this.onSubmitSuccess(data.jwt_token)
+      this.onSubmitSuccess(data)
     } else {
-      this.onSubmitFailure(data.error_msg)
+      this.onSubmitFailure(data)
     }
 
     this.setState(prevState => ({
