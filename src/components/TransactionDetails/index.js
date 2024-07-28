@@ -3,28 +3,25 @@ import Table from './Table'
 
 import './index.css'
 
-const data = [{date: '', description: '', credit: '', debit: '', balence: ''}]
-
 class TransactionDetails extends Component {
-  state = {transactionDetails:""}
+  state = {transactionDetails: ''}
 
-  componentDidMount(){
+  componentDidMount() {
     this.getTransactionDetails()
   }
-  
-  getTransactionDetails = async() =>{
-    const url = "https://todoapplication-m653.onrender.com"
+
+  getTransactionDetails = async () => {
+    const url = 'https://todoapplication-l779.onrender.com'
     const response = await fetch(url)
     const data = await response.json()
+    console.log(data)
     if (response.ok === true) {
-      this.setState({transactionDetails:data})
+      this.setState({transactionDetails: data})
     }
-
-    
   }
 
   render() {
-    const{transactionDetails}=this.state
+    const {transactionDetails} = this.state
     return (
       <div className="transaction-container">
         <h1 className="heading">Transaction Assignment</h1>

@@ -33,3 +33,44 @@
   border-top: none;
   margin-left: 0px;
 }
+
+.popup-contaienr {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #affa8f;
+  background-color: #fffdfd;
+  padding: 15px;
+}
+
+.header-contaienr {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.new-header {
+  font-size: 20px;
+  font-family: roboto;
+  font-weight: 600;
+  color: #252525;
+}
+
+.transaction-type-container {
+  width: 100%;
+  height: 60vh;
+}
+
+.trigger-button {
+  font-size: 15px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+}
