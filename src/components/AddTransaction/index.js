@@ -24,40 +24,56 @@ class AddTransaction extends Component {
     this.setState({transactionType: event.target.value})
   }
 
-  onsubmitForm = async event => {
+  onSubmitForm = async event => {
     event.preventDefault()
     const {inputAmount, transactionType, description} = this.state
 
-    const newList = {
-      id: uuidv4(),
-      date: new Date(),
-      description,
-      inputAmount,
-      transactionType,
+    const credit = transactionType === 'credit' ? inputAmount : 0
+    const debit = transactionType === 'debit' ? inputAmount : 0
+
+    const formattedDate = new Date().toLocaleDateString()
+
+    let balance = 0
+    if (transactionType === 'credit') {
+      balance += parseInt(inputAmount)
+    } else if (transactionType === 'debit') {
+      balance -= parseInt(inputAmount)
     }
 
-    console.log(newList)
+    const newList = {
+      id: uuidv4(),
+      date: formattedDate,
+      description,
+      credit,
+      debit,
+      balance,
+    }
 
-    const url = 'https://todoapplication-m653.onrender.com'
+    const url = 'https://todoapplication-wtf9.onrender.com/todos'
     const options = {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(newList),
     }
 
-    const response = await fetch(url, options)
-    const data = await response.json()
+    try {
+      const response = await fetch(url, options)
+      const data = await response.json()
 
-    console.log(data)
-
-    if (response.ok === true) {
-      console.log('response Success')
+      if (response.ok) {
+        console.log('Response Success')
+      }
+    } catch (error) {
+      console.error('Error:', error)
     }
   }
 
   render() {
     const {inputAmount} = this.state
     return (
-      <form className="add-container" onSubmit={this.onsubmitForm}>
+      <form className="add-container" onSubmit={this.onSubmitForm}>
         <div className="transaction-type-container">
           <label className="lable" htmlFor="type">
             Transaction Type
@@ -90,7 +106,7 @@ class AddTransaction extends Component {
           <textarea
             className="text-container"
             rows="4"
-            cols="55"
+            cols="45"
             onChange={this.onchangeInputDescription}
             id="description"
           >
